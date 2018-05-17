@@ -8,16 +8,16 @@
               <v-avatar size="125px">
                 <img
                   class="img-circle elevation-7 mb-1"
-                  src="https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/lists/1.jpg"
+                  src="../src/assets/adorable-animal-blur-825949.jpg"
                 >
               </v-avatar>
-              <div class="headline">John <span style="font-weight:bold">Carter</span></div>
-              <div class="subheading text-xs-center grey--text pt-1 pb-3">Lorem ipsum dolor sit amet</div>
+              <div class="headline">Kevin <span style="font-weight:bold">web programming</span></div>
+              <div class="subheading text-xs-center grey--text pt-1 pb-3">profile</div>
               <v-layout justify-space-between>
-                <a href="javascript:;" class="body-2">Home</a>
-                <a href="javascript:;" class="body-2">About</a>
-                <a href="javascript:;" class="body-2">Github</a>
-                <a href="javascript:;" class="body-2">Other</a>
+                <a href="" class="body-2">Home</a>
+                <a href="" class="body-2">About</a>
+                <a href="" class="body-2">Github</a>
+                <a href="" class="body-2">Other</a>
               </v-layout>
             </div>
           </v-flex>
@@ -62,12 +62,7 @@
     <v-footer class="secondary" app>
       <v-layout row wrap align-center>
         <v-flex xs12>
-          <div class="white--text ml-3">
-            Made with
-            <v-icon class="red--text">favorite</v-icon>
-            by <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
-            and <a class="white--text" href="https://github.com/vwxyzjn" target="_blank">Costa Huang</a>
-          </div>
+            I'm footer
         </v-flex>
       </v-layout>
     </v-footer>
