@@ -7,10 +7,10 @@
           <v-flex xs12 md4>
             <div class="text-xs-center">
               <v-avatar size="125px">
-                <!-- <img
+                <img
                   class="img-circle elevation-7 mb-1"
-                  src="../src/assets/adorable-animal-blur-825949.jpg"
-                > -->
+                  src="../assets/adorable-animal-blur-825949.jpg"
+                >
               </v-avatar>
               <div class="headline">Kevin <span style="font-weight:bold">web programming</span></div>
               <div class="subheading text-xs-center grey--text pt-1 pb-3">profile</div>
