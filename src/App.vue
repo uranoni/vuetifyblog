@@ -15,11 +15,14 @@
           v-for="(item, i) in items"
           :key="i"
         >
-          <v-list-tile-action>
+          <!-- <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+          </v-list-tile-action> -->
+          <v-list-tile-content style="height:100vh;">
+            <router-link to="/">Home</router-link>
+            <router-link to="/login">login</router-link>
+            <router-link to="/signup">signup</router-link>
+          <!-- <v-list-tile-title v-text="item.title"></v-list-tile-title> -->
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
