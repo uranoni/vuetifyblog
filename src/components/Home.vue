@@ -39,7 +39,7 @@
                   </v-container>
                 </v-card-media>
                 <v-card-text>
-
+                      {{post.title}}
                 </v-card-text>
                 <v-card-actions>
                   <v-btn icon class="red--text">
