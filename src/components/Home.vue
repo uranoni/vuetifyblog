@@ -52,7 +52,39 @@
                     <v-icon medium>fa-facebook</v-icon>
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn flat class="blue--text">Read More</v-btn>
+                  <!-- 原本按鈕設定 -->
+                  <!-- <v-btn flat class="blue--text">Read More</v-btn> -->
+                  <v-btn color="primary" dark @click.native.stop="dialog = true">Open Dialog</v-btn>
+                        <!-- 內容設定 -->
+                        <v-dialog v-model="dialog" max-width="290">
+                            <v-card>
+                              <v-card-title class="headline">{{post.title}}</v-card-title>
+                              <!-- <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text> -->
+                                     <!-- 卡片內容文字 -->
+                                     <v-card color="grey lighten-4" flat>
+                                                <v-card-text>
+                                                  <v-subheader>Light Theme</v-subheader>
+                                                  <v-container fluid>
+                                                    <v-layout row>
+                                                      <v-flex xs12>
+                                                        <v-text-field
+                                                          name="input-1"
+                                                          label="Label Text"
+                                                          textarea
+                                                          v-model="post.content"
+                                                        ></v-text-field>
+                                                      </v-flex>
+                                                    </v-layout>
+                                                  </v-container>
+                                                </v-card-text>
+                                              </v-card>
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="green darken-1" flat="flat" @click.native="dialog = false">修改</v-btn>
+                                <v-btn color="green darken-1" flat="flat" @click.native="dialog = false">刪除</v-btn>
+                              </v-card-actions>
+                            </v-card>
+                        </v-dialog>
                 </v-card-actions>
               </v-card>
             </div>
@@ -75,20 +107,21 @@ export default {
   data () {
     return {
         title: 'Your Logo',
+        dialog: false,
         posts: [
           {
-            title: 'Fusce ullamcorper tellus',
-            content: 'Fusce ullamcorper tellus sed maximus rutrum. Donec imperdiet ultrices maximus. Donec non tellus non neque pellentesque fermentum. Aenean in pellentesque urna.',
+            title: '文章標題1',
+            content: '今天天氣真好 ，我是文章測試標題1',
             imgUrl: 'https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/drop.jpg'
           },
           {
-            title: 'Donec vitae suscipit lectus, a luctus diam.',
-            content: 'Donec vitae suscipit lectus, a luctus diam. Proin vitae felis gravida, lobortis massa sit amet, efficitur erat. Morbi vel ultrices nisi.',
+            title: '文章標題2',
+            content: '今天天氣真好 ，我是文章測試標題2',
             imgUrl: 'https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/docks.jpg'
           },
           {
-            title: 'Vestibulum condimentum quam',
-            content: 'At sagittis sapien vulputate. Vivamus laoreet lacus id magna rutrum dapibus. Donec vel pellentesque arcu. Maecenas mollis odio tempus felis elementum commodo.',
+            title: '文章標題3',
+            content: '今天天氣真好 ，我是文章測試標題3',
             imgUrl: 'https://raw.githubusercontent.com/vuetifyjs/docs/dev/static/doc-images/cards/plane.jpg'
           }
         ]
