@@ -22,6 +22,8 @@
             <router-link to="/">Home</router-link>
             <router-link to="/login">login</router-link>
             <router-link to="/signup">signup</router-link>
+            <router-link to="/profile">profile</router-link>
+            <button @click="logout">logout</button>
           <!-- <v-list-tile-title v-text="item.title"></v-list-tile-title> -->
           </v-list-tile-content>
         </v-list-tile>
@@ -73,6 +75,8 @@
 </template>
 
 <script>
+import {LOGOUT} from './constants/graphql'
+
 export default {
   data () {
     return {
@@ -89,6 +93,20 @@ export default {
       title: 'Vuetify.js'
     }
   },
-  name: 'App'
+  name: 'App',
+  methods:{
+    logout(){
+      this.$apollo.mutate({
+        mutation:LOGOUT,
+      }).then(result=>{
+        window.localStorage.removeItem("authToken");
+        console.log("登出");
+        this.$store.commit("setUser",null);
+        this.$router.push("/");
+      }).catch(err=>{
+        console.log(err);
+      })
+    }
+  }
 }
 </script>

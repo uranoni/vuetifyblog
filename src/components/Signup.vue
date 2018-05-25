@@ -7,27 +7,27 @@
                     <div class="over_block">
                       <div class="ln-1-content text-center">
 	<img src="images/ln-1-logo.png" alt="logo" class="img-register">
-	 <form>
+	 <form >
     <div class="input-group">
 	 <span class="input-group-addon"><i class="fa fa-user mr-3"></i></span>   
-      <input id="name" type="text" class="form-control" name="name" placeholder="Full Name">
+      <input v-model="username" id="name" type="text" class="form-control" name="name" placeholder="Full Name">
      
     </div>
 	 <div class="input-group">
 	 <span class="input-group-addon"><i class="fa fa-envelope mr-3"></i></span>   
-      <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+      <input   v-model="email" type="text" class="form-control" name="email" placeholder="Email">
      
     </div>
     <div class="input-group">
 	 <span class="input-group-addon"><i class="glyphicon glyphicon-lock mr-3"></i></span>
-      <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+      <input v-model="password" id="password" type="password" class="form-control" name="password" placeholder="Password">
     </div>
-	 <div class="input-group">
+	 <!-- <div class="input-group">
 	 <span class="input-group-addon"><i class="glyphicon glyphicon-lock mr-3"></i></span>
       <input id="password" type="password" class="form-control" name="password" placeholder="Confirm Password">
-    </div>
+    </div> -->
   </form>
-<a href="#" class="btn ln-1-btn text-center">REGISTER</a>
+<a href="#" class="btn ln-1-btn text-center" @click="SignUP">REGISTER</a>
 <p class="register">Already have an account?<a href="login-1.html" class="ml-3">Login now</a></p>
 	</div>
 						
@@ -40,6 +40,45 @@
     </div>
 
 </template>
+
+
+<script>
+import { SIGNUP_MUTATION } from "../constants/graphql";
+export default {
+	data(){
+		return {
+			username:'',
+			email:'',
+			password:''
+		}
+	},
+	methods:{
+		SignUP(){
+			const {username,email,password} = this.$data;
+			console.log(username)
+			this.$apollo
+				.mutate({
+					mutation:SIGNUP_MUTATION,
+					variables:{
+						username,
+						email,
+						password
+					}
+				})
+				.then(result=>{
+					const {tokens} =result.data.signup;
+					const token = tokens[tokens.length-1].tokenHash;
+					window.localStorage.setItem("authToken",token);
+					this.$store.commit("setUser",result.data.signup);
+					this.$router.push("/Home");
+				})
+				.catch(err=>{
+					console.log(err)
+				})
+		}
+	}
+}
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

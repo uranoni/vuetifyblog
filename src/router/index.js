@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
+import Profile  from "@/components/Profile";
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +22,11 @@ export default new Router({
       path:'/signup',
       name:'Signup',
       component:Signup
+    },
+    {
+      path:'/profile',
+      name:'Profile',
+      component:Profile
     }
   ]
 })

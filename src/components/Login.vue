@@ -11,12 +11,12 @@
 	 <form>
     <div class="input-group">
 	 <span class="input-group-addon"><i class="fa fa-envelope mr-3"></i></span>   
-      <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+      <input v-model="email" type="text" class="form-control" name="email" placeholder="Email">
      
     </div>
     <div class="input-group">
 	 <span class="input-group-addon"><i class="glyphicon glyphicon-lock mr-3"></i></span>
-      <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+      <input v-model="password" type="password" class="form-control" name="password" placeholder="Password">
     </div>
   </form>
   <div class="row ln-1-mg">
@@ -29,7 +29,7 @@
           </div></div>
   <div class="col-12 col-sm-6 col-md-6 col-lg-6"><a href="forgot-1.html" class="float-right"><span class="fa fa-question-circle forgot"></span>Forgot password?</a></div>
   </div>
-<a href="#" class="btn ln-1-btn text-center">LOGIN</a>
+<a @click="logout" class="btn ln-1-btn text-center">LOGIN</a>
 <p>Don't have an account?<a href="regsiter-1.html" class="ml-3">Register now</a></p>
 	</div>
 						
@@ -45,6 +45,40 @@
     </div>
 
 </template>
+<script>
+import {LOGIN} from "../constants/graphql"
+export default {
+	data(){
+		return{
+			email:"",
+			password:""
+		}
+	},
+	methods:{
+		logout(){
+			const {email,password} = this.$data;
+			this.$apollo
+				.mutate({
+					mutation:LOGIN,
+					variables:{
+						email,
+						password
+					}
+				})
+				.then(result=>{
+					const {tokens} =result.data.login;
+					const token = tokens[tokens.length-1].tokenHash;
+					window.localStorage.setItem("authToken",token);
+					this.$store.commit("setUser",result.data.login);
+					this.$router.push("/Home");
+				})
+				.catch(err=>{
+					console.log(err)
+				})
+		}
+	}
+}
+</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
